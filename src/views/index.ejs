@@ -1,0 +1,224 @@
+
+<%- include('partials/_header') %>
+    <!--Menu Filtrar-->
+    <div class="container my-3">
+        <div class="row">
+            <div class="col-md-12 mt-2">
+                <div class="card">
+                    <div class="car-body py-2">
+                        <form action="/" method="POST" class="form-group  d-flex ps-2">
+                            <select name="especialidad" id="especialidad" class="form-control mx-2">
+                                <option value="todo" selected>Especialidad</option>
+                                <option value="Admision">Admision</option>
+                                <option value="Administracion">Administracion</option>
+                                <option value="Auxiliar">Auxiliar</option>
+                                <option value="Bioquimico/a">Bioquimico/a</option>
+                                <option value="Coordinador Enfermeroia" >Coordinador Enfermeria</option>
+                                <option value="Coordinador Facturacion">Coordinador Facturacion</option>
+                                <option value="Camillero">Camillero</option>
+                                <option value="Director/a">Director/a</option>
+                                <option value="Ecografista">Ecografista</option>
+                                <option value="Enfermero/a" >Enfermero/a</option>                                    
+                                <option value="Facturacion">Facturacion</option>
+                                <option value="Hisopador">Hisopador</option>
+                                <option value="Limpieza">Limpieza</option> 
+                                <option value="Medico Clinico">Medico Clinico</option>
+                                <option value="Medico Pediatra">Medico Pediatra</option>                                    
+                                <option value="Supervisor Enfermeria" >Supervisor Enfermeria</option>
+                                <option value="Soporte Tecnico">Soporte Tecnico</option>
+                                <option value="Farmacia">Tecnica Farmacia</option>
+                                <option value="Tecnico Laboratorista">Tecnico Laboratorista</option>
+                                <option value="Tecnico Rayos">Tecnico Rayos</option>
+                            </select>
+                            <select name="turno" class="form-control mx-2">
+                                <option value="todo" selected>Dias</option>
+                                <option value="L-V" >Lunes a Viernes</option>
+                                <option value="S-D">Sabado y Domingo</option>
+                            </select>
+                            <select name="horario" class="form-control mx-2">
+                                <option value="todo" selected>Turnos</option>
+                                <option value="Madrugada">Madrugada</option>
+                                <option value="Mañana">Mañana</option>
+                                <option value="Tarde">Tarde</option>
+                                <option value="Noche">Noche</option>
+                            </select>
+                            <!--<select name="state" id="" class="form-control">
+                                <option value="true">Estado</option>
+                                <option value="Activo">Activo</option>
+                                <option value="Inactivo">Inactivo</option>
+                            </select>-->
+                            <button type="submit" class="btn btn-primary mx-2"><i class="fas fa-filter"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Menu Busqueda-->
+    <div class="container my-3">
+        <div class="row">
+            <div class="col-md-12 mt-2">
+                <div class="card">
+                    <div class="car-body py-2">
+                        <div class="form-group d-flex justify-content-around ">
+                            <input type="text" id="search" class="col-md-2"> 
+                                <ul id="listSearch"></ul>                                                                       
+                            <form action="/search" method="POST" class="d-flex ps-2">
+                                <div class="col-auto">                                       
+                                    <select name="id" id="searchName" class="form-control">
+                                        <option value="" selected>Nombre..</option>
+                                        <% personal.forEach( e =>{ %>
+                                        <option value='<%= e._id %>'><%= e.nombre %></option>
+                                        <% }); %>
+                                    </select>
+                                </div>
+                                <div class="col-auto">
+                                    <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                                </div>
+                            </form>
+                            <form action="/search" method="POST" class="d-flex ps-2">
+                                <div class="col-auto">    
+                                    <select name="busquedaLegajo" id="searchLegajo" class="form-control">
+                                        <option value="" selected>Legajo..</option>
+                                        <% personal.forEach( e =>{ %>
+                                        <option value='<%= e._id %>'><%= e.legajo %></option>
+                                        <% }); %>
+                                    </select>
+                                </div>
+                                <div class="col-auto">
+                                    <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                                </div>
+                            </form>
+                            <form action="/search" method="POST" class="d-flex ps-2">                            
+                                <div class="col-auto">    
+                                    <select name="busquedaDni" id="searchDni" class="form-control">
+                                        <option value="">DNI..</option>
+                                        <% personal.forEach( e =>{ %>
+                                        <option value='<%= e._id %>'><%= e.dni %></option>
+                                        <% }); %>
+                                    </select>
+                                </div>                        
+                                <div class="col-auto">
+                                    <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                                </div>
+                            </form>                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="card">            
+                <button class="btn btn-success" id='reset'>Ingresar nuevo agente</button>
+                <!--<a href="" class="btn btn-success" id='reset'>Ingreso</a>-->             
+        </div>
+    </div>
+    
+    <!-- Cargar personal y pintar lista--> 
+    <div class="container">
+        <div class="row">
+            <!--Form Cargar Personal-->
+            <div class="col-md-12 mt-2" id="formCargarAgentes" hidden>
+                <div class="card">
+                    <div class="card-body">
+                        <form action="/add" class="form" method="POST">
+                            <div class="form-group mb-2">
+                                <input type="text" name="nombre" id="nombre" placeholder="Nombre" class="form-control" autofocus>
+                            </div>
+                            <div class="form-group mb-2">
+                                <input type="number" name="dni" id="dni" placeholder="DNI" class="form-control">
+                            </div>
+                            <div class="form-group mb-2">
+                                <input type="number" name="legajo" id="legajo" placeholder="Legajo" class="form-control">
+                            </div>
+                            <div class="from-group mb-2">
+                                <select name="especialidad" class="form-control">                 
+                                    <option value="Admision">Admision</option>
+                                    <option value="Administracion">Administracion</option>
+                                    <option value="Auxiliar">Auxiliar</option>
+                                    <option value="Bioquimico/a">Bioquimico/a</option>
+                                    <option value="Coordinador Enfermeroia" >Coordinador Enfermeria</option>
+                                    <option value="Coordinador Facturacion">Coordinador Facturacion</option>
+                                    <option value="Camillero">Camillero</option>
+                                    <option value="Director/a">Director/a</option>
+                                    <option value="Ecografista">Ecografista</option>
+                                    <option value="Enfermero/a" >Enfermero/a</option>                                    
+                                    <option value="Facturacion">Facturacion</option>
+                                    <option value="Hisopador">Hisopador</option>
+                                    <option value="Limpieza">Limpieza</option> 
+                                    <option value="Medico Clinico">Medico Clinico</option>
+                                    <option value="Medico Pediatra">Medico Pediatra</option>                                    
+                                    <option value="Supervisor Enfermeria" >Supervisor Enfermeria</option>
+                                    <option value="Soporte Tecnico">Soporte Tecnico</option>
+                                    <option value="Farmacia">Tecnica Farmacia</option>
+                                    <option value="Tecnico Laboratorista">Tecnico Laboratorista</option>
+                                    <option value="Tecnico Rayos">Tecnico Rayos</option>
+                                </select>
+                            </div>
+                            <div class="form-group mb-2">
+                                <select name="turno" class="form-control">
+                                    <option value="L-V" selected>Lunes a Viernes</option>
+                                    <option value="S-D">Sabado y Domingo</option>
+                                </select>
+                            </div>
+                            <div class="form-group mb-2">
+                                <select name="horario" class="form-control">
+                                    <option value="Madrugada">Madrugada</option>
+                                    <option value="Mañana" selected>Mañana</option>
+                                    <option value="Tarde">Tarde</option>
+                                    <option value="Noche">Noche</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">Agregar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!--Lista -->
+            <div class="col-md-12 mt-2">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr class="bg-primary text-white text-xl-center">
+                            <th>N°</th>
+                            <th>Nombre</th>
+                            <th>Legajo</th>
+                            <th>DNI</th>
+                            <th>Especialidad</th>
+                            <th>Turno</th>
+                            <th>Horario</th>
+                            <th>Operacion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% let count=1; personal.forEach( e =>{ %>
+                            <tr class="bg-<%= e.state ? 'light' : 'warning' %> ">
+                                <td><%= count++ %></td>
+                                <td><%= e.nombre %></td>
+                                <td><%= e.legajo %></td>
+                                <td><%= e.dni %></td>
+                                <td><%= e.especialidad %></td>
+                                <td><%= e.turno %></td>
+                                <td><%= e.horario %></td>
+                               
+                                <td>
+                                    <a href='/status/<%= e._id %>' 
+                                        class="btn <%= e.state ? 'btn-success' : 'btn-secondary' %>"
+                                        ><i class=" <%= e.state ? 'far fa-check-circle' : 'far fa-times-circle' %>"></i></a>
+                                    <a href='/delete/<%= e._id %>' class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+                                    <a href='/edit/<%= e._id %>' class="btn btn-primary"><i class="fas fa-user-edit"></i></a>
+                                </td>
+                            </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+<script src="./js/search.js"></script>
+<script src="./js/display.js"></script>
+<%- include('partials/_footer') %>
+    
+

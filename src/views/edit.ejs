@@ -1,0 +1,68 @@
+
+<%- include('partials/_header') %>
+
+<div class="container">
+<!-- Formularios -->
+    <div class="row">
+        <div class="card">
+            <div class="card-body">
+                <form action="/update/<%= resultado._id %>" class="form" method="POST">
+                    <div class="form-group mb-2">
+                        <input type="text" name="nombre" id="nombre" placeholder="Nombre" class="form-control" value="<%= resultado.nombre %>">
+                    </div>
+                    <div class="form-group mb-2">
+                        <input type="number" name="dni" id="dni" placeholder="DNI" class="form-control" value="<%= resultado.dni %>">
+                    </div>
+                    <div class="form-group mb-2">
+                        <input type="number" name="legajo" id="legajo" placeholder="Legajo" class="form-control" value="<%= resultado.legajo %>">
+                    </div>
+                    <div class="from-group mb-2">
+                        <select name="especialidad" class="form-control">
+                            <option value="<%= resultado.especialidad %>" selected><%= resultado.especialidad %></option>
+                            <option value="Admision">Admision</option>
+                            <option value="Administracion">Administracion</option>
+                            <option value="Auxiliar">Auxiliar</option>
+                            <option value="Bioquimico/a">Bioquimico/a</option>
+                            <option value="Coordinador Enfermeroia" >Coordinador Enfermeria</option>
+                            <option value="Coordinador Facturacion">Coordinador Facturacion</option>
+                            <option value="Camillero">Camillero</option>
+                            <option value="Director/a">Director/a</option>
+                            <option value="Ecografista">Ecografista</option>
+                            <option value="Enfermero/a" >Enfermero/a</option>                                    
+                            <option value="Facturacion">Facturacion</option>
+                            <option value="Hisopador">Hisopador</option>
+                            <option value="Limpieza">Limpieza</option> 
+                            <option value="Medico Clinico">Medico Clinico</option>
+                            <option value="Medico Pediatra">Medico Pediatra</option>                                    
+                            <option value="Supervisor Enfermeria" >Supervisor Enfermeria</option>
+                            <option value="Soporte Tecnico">Soporte Tecnico</option>
+                            <option value="Farmacia">Tecnica Farmacia</option>
+                            <option value="Tecnico Laboratorista">Tecnico Laboratorista</option>
+                            <option value="Tecnico Rayos">Tecnico Rayos</option>
+                        </select>
+                    </div>
+                    <div class="form-group mb-2">
+                        <select name="turno" class="form-control">
+                            <option value="<%= resultado.turno %>" selected><%= resultado.turno %></option>
+                            <option value="L-V">Lunes a Viernes</option>
+                            <option value="S-D">Sabado y Domingo</option>
+                        </select>
+                    </div>
+                    <div class="form-group mb-2">
+                        <select name="horario" class="form-control">
+                            <option value="<%= resultado.horario %>" selected><%= resultado.horario %></option>
+                            <option value="Madrugada">Madrugada</option>
+                            <option value="Mañana">Mañana</option>
+                            <option value="Tarde">Tarde</option>
+                            <option value="Noche">Noche</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Actualizar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+    <%- include('partials/_footer') %>

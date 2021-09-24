@@ -1,0 +1,83 @@
+
+<%- include('partials/_header') %>
+<select name="busqueda" id="search">
+    
+</select>
+<div class="container">
+    <div class="row">
+    <!--Form-->
+        <div class="col-md-4 mt-2" id="formCargarAgentes">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/input" class="form" method="POST">
+                        <div class="form-group mb-2">
+                            <input type="text" name="nombre" id="nombre" placeholder="Nombre" class="form-control">
+                        </div>
+                        <div class="form-group mb-2">
+                            <input type="number" name="dni" id="dni" placeholder="DNI" class="form-control">
+                        </div>
+                        <div class="form-group mb-2">
+                            <input type="number" name="legajo" id="legajo" placeholder="Legajo" class="form-control">
+                        </div>
+                        <div class="from-group mb-2">
+                            <select name="especialidad" class="form-control" id="especialida">
+                                <option value="Medico/a">Medico/a</option>
+                                <option value="Enfermero/a" selected>Enfermero/a</option>
+                                <option value="Limpieza">Limpieza</option>
+                                <option value="Admision">Admision</option>
+                                <option value="Administracion">Administracion</option>
+                                <option value="Bioquimico/a">Bioquimico/a</option>
+                                <option value="Farmacia">Farmacia</option>
+                                <option value="Facturacion">Facturacion</option>
+                                <option value="Director/a">Director/a</option>
+                                <option value="Soporte Tecnico">Soporte Tecnico</option>
+                                <option value="Tecnico Laboratorista">Tecnico Laboratorista</option>
+                                <option value="Tecnico Rayos">Tecnico Rayos</option>
+                            </select>
+                        </div>
+                        <div class="form-group mb-2">
+                            <select name="turno" class="form-control" id="turno">
+                                <option value="L-V" selected>Lunes a Viernes</option>
+                                <option value="S-D">Sabado y Domingo</option>
+                            </select>
+                        </div>
+                        <div class="form-group mb-2">
+                            <select name="horario" class="form-control" id="horario">
+                                <option value="Madrugada">Madrugada</option>
+                                <option value="Mañana" selected>Mañana</option>
+                                <option value="Tarde">Tarde</option>
+                                <option value="Noche">Noche</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary" id="agregar">Agregar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--Lista -->
+        <div class="col-md-8 mt-2">
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>N°</th>
+                        <th>Nombre</th>
+                        <th>Legajo</th>
+                        <th>DNI</th>
+                        <th>Especialidad</th>
+                        <th>Turno</th>
+                        <th>Horario</th>
+                        <th>Operacion</th>
+                    </tr>
+                </thead>
+                <tbody id='tablaIngresos'>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="./js/inputs.js"></script>
+<%- include('partials/_footer') %>
