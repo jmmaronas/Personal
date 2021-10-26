@@ -5,8 +5,8 @@
         <div class="row">
             <div class="col-md-12 mt-2">
                 <div class="card">
-                    <div class="car-body py-2">
-                        <form action="/" method="POST" class="form-group  d-flex ps-2">
+                    <div class="car-body py-2 d-flex">
+                        <form action="/" method="POST" class="form-group  d-flex ps-2 col-9">
                             <select name="especialidad" id="especialidad" class="form-control mx-2">
                                 <option value="todo" selected>Especialidad</option>
                                 <option value="Admision">Admision</option>
@@ -42,6 +42,7 @@
                                 <option value="Tarde">Tarde</option>
                                 <option value="Noche">Noche</option>
                             </select>
+                            
                             <!--<select name="state" id="" class="form-control">
                                 <option value="true">Estado</option>
                                 <option value="Activo">Activo</option>
@@ -49,20 +50,23 @@
                             </select>-->
                             <button type="submit" class="btn btn-primary mx-2"><i class="fas fa-filter"></i></button>
                         </form>
+                        <div class="form-group d-flex justify-content-around ">
+                            <input type="text" id="search" class="form-control mx-2">
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                                <ul id="listSearch"></ul>   
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <!--Menu Busqueda-->
-    <div class="container my-3">
+    <!--<div class="container my-3">
         <div class="row">
             <div class="col-md-12 mt-2">
                 <div class="card">
                     <div class="car-body py-2">
-                        <div class="form-group d-flex justify-content-around ">
-                            <input type="text" id="search" class="col-md-2"> 
-                                <ul id="listSearch"></ul>                                                                       
+                        <div class="form-group d-flex justify-content-around ">                                                        
                             <form action="/search" method="POST" class="d-flex ps-2">
                                 <div class="col-auto">                                       
                                     <select name="id" id="searchName" class="form-control">
@@ -101,13 +105,14 @@
                                 <div class="col-auto">
                                     <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
                                 </div>
-                            </form>                        
+                            </form> 
+                                                                                                                      
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </div> --> 
     <div class="container">
         <div class="card">            
                 <button class="btn btn-success" id='reset'>Ingresar nuevo agente</button>
@@ -192,7 +197,7 @@
                             <th>Operacion</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="listadoPersonal">
                         <% let count=1; personal.forEach( e =>{ %>
                             <tr class="bg-<%= e.state ? 'light' : 'warning' %> ">
                                 <td><%= count++ %></td>
